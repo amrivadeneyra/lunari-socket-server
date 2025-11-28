@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
     socket.join(roomId)
     console.log(`🔍 Servidor: Usuario ${socket.id} se unió a la sala ${roomId}`)
     
-    // ✅ DEBUGGING: Verificar cuántos clientes hay en la sala después de unirse
+    // DEBUGGING: Verificar cuántos clientes hay en la sala después de unirse
     const room = io.sockets.adapter.rooms.get(roomId)
     const clientCount = room ? room.size : 0
     console.log(`🔍 Servidor: Sala ${roomId} ahora tiene ${clientCount} clientes`)
@@ -44,7 +44,7 @@ io.on('connection', (socket) => {
     socket.leave(roomId)
     console.log(`📡 Socket.io: Usuario ${socket.id} salió de la sala ${roomId}`)
     
-    // ✅ DEBUGGING: Verificar cuántos clientes quedan en la sala
+    // DEBUGGING: Verificar cuántos clientes quedan en la sala
     const room = io.sockets.adapter.rooms.get(roomId)
     const clientCount = room ? room.size : 0
     console.log(`📡 Socket.io: Sala ${roomId} ahora tiene ${clientCount} clientes`)
@@ -64,7 +64,7 @@ app.post('/send-message', express.json(), (req, res) => {
     return res.status(400).json({ message: 'Missing required fields' })
   }
 
-  // ✅ DEBUGGING: Verificar cuántos clientes están en la sala
+  // DEBUGGING: Verificar cuántos clientes están en la sala
   const room = io.sockets.adapter.rooms.get(roomId)
   const clientCount = room ? room.size : 0
   console.log(`📡 Socket.io: Sala ${roomId} tiene ${clientCount} clientes conectados`)
